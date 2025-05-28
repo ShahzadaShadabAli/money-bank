@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shop by Category</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="affirmations-bar">
+    <div class="affirmations-marquee">
+      <div class="affirmation">
+        She isn't made—<br><span class="gold">she's composed.</span>
+      </div>
+      <div class="affirmation">
+        Looks, not granted—<br><span class="gold">but chosen.</span>
+      </div>
+      <div class="affirmation">
+        Not born to beauty—<br><span class="gold">drawn to it.</span>
+      </div>
+      <div class="affirmation">
+        She moves like a<br><span class="gold">memory.</span>
+      </div>
+      <div class="affirmation">
+        Not adorned—<br><span class="gold">adored.</span>
+      </div>
+      <div class="affirmation">
+        As if written by<br><span class="gold">candlelight.</span>
+      </div>
+    </div>
+  </div>
+  <main>
+    <h1>SHOP BY CATEGORY</h1>
+    <p class="subtitle">Our best in class products are precisely crafted to simplify and elevate your routine.</p>
+    <div class="categories">
+      <div class="category-card fade-in" style="--delay:0s;">
+        <img src="imgs/2.jpg" alt="Shop Hair">
+        <div class="overlay"></div>
+        <span><div class="glaze">ENCHANTER </div> <span class="gold">HAIR</span></span>
+        <div class="card-actions">
+          <!-- <a href="#" class="card-btn">Link 1</a>
+          <a href="#" class="card-btn">Link 2</a>
+          <a href="#" class="card-btn">Link 3</a>
+          <a href="#" class="card-btn">Link 4</a> -->
+        </div>
+      </div>
+      <div class="category-card fade-in" style="--delay:0.1s;">
+        <img src="imgs/3.webp" alt="Shop Body">
+        <div class="overlay"></div>
+        <span class="glaze">REFINER <span class="gold">BODY</span></span>
+        <div class="card-actions">
+          <!-- <a href="#" class="card-btn">Link 1</a>
+          <a href="#" class="card-btn">Link 2</a>
+          <a href="#" class="card-btn">Link 3</a>
+          <a href="#" class="card-btn">Link 4</a> -->
+        </div>
+      </div>
+      <div class="category-card fade-in" style="--delay:0.2s;">
+        <img src="imgs/1.jpg" alt="Shop Skin">
+        <div class="overlay"></div>
+        <span class="glaze">POLISHER <span class="gold">SKIN</span></span>
+        <div class="card-actions">
+          <a href="https://amzn.to/4mAOnhx" class="card-btn">Cleanser</a>
+          <!-- <a href="#" class="card-btn">Link 2</a>
+          <a href="#" class="card-btn">Link 3</a>
+          <a href="#" class="card-btn">Link 4</a> -->
+        </div>
+      </div>
+      <div class="category-card fade-in" style="--delay:0.3s;">
+        <img src="imgs/4.jpeg" alt="Shop Revival">
+        <div class="overlay"></div>
+        <span class="glaze">ENCHANTER <span class="gold">LIPS</span></span>
+        <div class="card-actions">
+          <!-- <a href="#" class="card-btn">Link 1</a>
+          <a href="#" class="card-btn">Link 2</a>
+          <a href="#" class="card-btn">Link 3</a>
+          <a href="#" class="card-btn">Link 4</a> -->
+        </div>
+      </div>
+    </div>
+  </main>
+  <script>
+    // Show card actions on tap for mobile
+    document.querySelectorAll('.category-card').forEach(function(card) {
+      let isTouch = false;
+      card.addEventListener('touchstart', function(e) {
+        isTouch = true;
+        document.querySelectorAll('.category-card').forEach(c => c.classList.remove('show-actions'));
+        card.classList.add('show-actions');
+      });
+      card.addEventListener('touchend', function(e) {
+        setTimeout(() => card.classList.remove('show-actions'), 2000);
+      });
+      card.addEventListener('click', function(e) {
+        if (isTouch) return; // Prevent double trigger on touch devices
+        document.querySelectorAll('.category-card').forEach(c => c.classList.remove('show-actions'));
+        card.classList.add('show-actions');
+        setTimeout(() => card.classList.remove('show-actions'), 2000);
+      });
+    });
+    // Hide actions if user taps elsewhere
+    document.body.addEventListener('touchstart', function(e) {
+      if (!e.target.closest('.category-card')) {
+        document.querySelectorAll('.category-card').forEach(c => c.classList.remove('show-actions'));
+      }
+    });
+  </script>
+</body>
+</html>
