@@ -305,8 +305,10 @@ body {
   }
   
   @media (max-width: 400px) {
+
     .category-card {
-      height: 220px;
+      width: 100%;
+      margin-bottom: 12px;
     }
     
     h1 {
