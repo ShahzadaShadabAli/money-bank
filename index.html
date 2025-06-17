@@ -83,30 +83,73 @@
     </div>
   </main>
   <script>
-    // Show card actions on tap for mobile
-    document.querySelectorAll('.category-card').forEach(function(card) {
-      let isTouch = false;
-      card.addEventListener('touchstart', function(e) {
-        isTouch = true;
-        document.querySelectorAll('.category-card').forEach(c => c.classList.remove('show-actions'));
-        card.classList.add('show-actions');
-      });
-      card.addEventListener('touchend', function(e) {
-        setTimeout(() => card.classList.remove('show-actions'), 2000);
-      });
-      card.addEventListener('click', function(e) {
-        if (isTouch) return; // Prevent double trigger on touch devices
-        document.querySelectorAll('.category-card').forEach(c => c.classList.remove('show-actions'));
-        card.classList.add('show-actions');
-        setTimeout(() => card.classList.remove('show-actions'), 2000);
-      });
-    });
-    // Hide actions if user taps elsewhere
-    document.body.addEventListener('touchstart', function(e) {
-      if (!e.target.closest('.category-card')) {
-        document.querySelectorAll('.category-card').forEach(c => c.classList.remove('show-actions'));
+    document.addEventListener('DOMContentLoaded', function () {
+      const cards = document.querySelectorAll('.category-card');
+      let activeCard = null;
+      let hideTimer = null;
+  
+      function isMobile() {
+        return window.innerWidth <= 600;
       }
+  
+      function hideAllCards() {
+        cards.forEach(card => {
+          card.classList.remove('show-actions');
+          card.classList.remove('links-disabled');
+        });
+        activeCard = null;
+      }
+  
+      cards.forEach(card => {
+        card.addEventListener('click', function (e) {
+          if (!isMobile()) return;
+  
+          if (e.target.tagName === 'A' || e.target.closest('a')) {
+            return;
+          }
+  
+          e.preventDefault();
+          e.stopPropagation();
+  
+          if (hideTimer) clearTimeout(hideTimer);
+  
+          if (activeCard === card) {
+            hideAllCards();
+            return;
+          }
+  
+          if (activeCard) {
+            activeCard.classList.remove('show-actions');
+            activeCard.classList.remove('links-disabled');
+          }
+  
+          card.classList.add('show-actions');
+          card.classList.add('links-disabled');
+          activeCard = card;
+  
+          hideTimer = setTimeout(() => {
+            card.classList.remove('links-disabled');
+          }, 3000); // Enable links after 3 seconds
+        });
+      });
+  
+      document.addEventListener('click', function (e) {
+        if (isMobile() && !e.target.closest('.category-card')) {
+          hideAllCards();
+          if (hideTimer) clearTimeout(hideTimer);
+        }
+      });
+  
+      window.addEventListener('resize', function () {
+        if (!isMobile()) {
+          hideAllCards();
+          if (hideTimer) clearTimeout(hideTimer);
+        }
+      });
     });
   </script>
+  
+  
+  
 </body>
 </html>

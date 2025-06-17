@@ -231,8 +231,6 @@ h1 {
   }
 }
 
-
-
 @media only screen and (max-width: 600px) {
   .categories {
     display: grid;
@@ -279,10 +277,6 @@ h1 {
     font-size: 1rem;
   }
 }
-
-
-
-
 
 .card-actions {
   position: absolute;
@@ -353,3 +347,9 @@ h1 {
 
 .category-card:hover .card-btn:nth-child(4),
 .category-card.show-actions .card-btn:nth-child(4) { transition-delay: 0.34s; }
+
+.disabled-link {
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
