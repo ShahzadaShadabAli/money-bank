@@ -37,6 +37,7 @@
     <p class="subtitle">Our best in class products are precisely crafted to simplify and elevate your routine.</p>
     <div class="categories">
       <div class="category-card fade-in" style="--delay:0s;">
+        <div class="mobile-click-hint">- click here -</div>
         <img src="imgs/2.jpg" alt="Shop Hair">
         <div class="overlay"></div>
         <span><div class="glaze">ENCHANTER </div> <span class="gold">HAIR</span></span>
@@ -48,6 +49,7 @@
         </div>
       </div>
       <div class="category-card fade-in" style="--delay:0.1s;">
+        <div class="mobile-click-hint">- click here -</div>
         <img src="imgs/3.webp" alt="Shop Body">
         <div class="overlay"></div>
         <span class="glaze">REFINER <span class="gold">BODY</span></span>
@@ -59,6 +61,7 @@
         </div>
       </div>
       <div class="category-card fade-in" style="--delay:0.2s;">
+        <div class="mobile-click-hint">- click here -</div>
         <img src="imgs/1.jpg" alt="Shop Skin">
         <div class="overlay"></div>
         <span class="glaze">POLISHER <span class="gold">SKIN</span></span>
@@ -70,6 +73,7 @@
         </div>
       </div>
       <div class="category-card fade-in" style="--delay:0.3s;">
+        <div class="mobile-click-hint">- click here -</div>
         <img src="imgs/4.jpeg" alt="Shop Revival">
         <div class="overlay"></div>
         <span class="glaze">ENCHANTER <span class="gold">LIPS</span></span>
@@ -89,7 +93,7 @@
       let hideTimer = null;
   
       function isMobile() {
-        return window.innerWidth <= 600;
+        return window.innerWidth <= 900;
       }
   
       function hideAllCards() {
@@ -99,6 +103,15 @@
         });
         activeCard = null;
       }
+  
+      cards.forEach(card => {
+        if (!card.querySelector('.mobile-click-hint')) {
+          const hint = document.createElement('div');
+          hint.className = 'mobile-click-hint';
+          hint.textContent = '- click here -';
+          card.appendChild(hint);
+        }
+      });
   
       cards.forEach(card => {
         card.addEventListener('click', function (e) {
@@ -129,7 +142,7 @@
   
           hideTimer = setTimeout(() => {
             card.classList.remove('links-disabled');
-          }, 3000); // Enable links after 3 seconds
+          }, 3000);
         });
       });
   
